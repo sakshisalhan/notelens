@@ -1,36 +1,104 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NoteLens – End-to-End AI Application
+## Overview
+NoteLens is a simple AI-powered application that allows users to ask questions based on course documents and receive answers.
 
-## Getting Started
+It demonstrates a complete AI workflow from data ingestion to user interface.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Live Demo
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Vercel URL: https://notelens-seven.vercel.app
+GitHub Repo: https://github.com/sakshisalhan/notelens
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Features
 
-## Learn More
+* Ask questions using a simple UI
+* Backend processes questions using stored data
+* Returns relevant answers to the user
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Architecture
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Data (notes.txt) → API → Processing Logic → UI
 
-## Deploy on Vercel
+* Data ingestion: notes.txt
+* Processing: keyword matching logic
+* Storage: local file
+* API: Next.js route (`/api/ask`)
+* UI: Next.js frontend
+* Deployment: Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 5-Skill Workflow
+
+### grill-me
+
+* Evaluated project idea
+* Simplified scope
+
+### write-a-prd
+
+* Created PRD GitHub Issue
+
+### prd-to-issues
+
+* Created smaller GitHub Issues
+
+### tdd
+
+* Unit tests using Vitest (`tests/api.unit.ts`)
+
+### improve-codebase-architecture
+
+* Refactored logic into `lib/answer.ts`
+
+---
+
+## Testing
+
+### Unit Testing
+
+* Tested API logic using Vitest
+
+### End-to-End Testing
+
+* Playwright test simulating:
+
+  * user input
+  * button click
+  * answer display
+
+---
+
+## Project Structure
+
+* app/ → frontend + API
+* lib/ → logic
+* data/ → input data
+* tests/ → unit tests
+* e2e/ → Playwright tests
+
+---
+
+## What the App Supports
+
+* Simple question answering
+* End-to-end workflow
+
+---
+
+## Limitations
+
+* Uses keyword matching
+* Limited dataset
+
+---
+
+## Conclusion
+
+This project demonstrates a complete AI pipeline including planning, testing, architecture, and deployment.
