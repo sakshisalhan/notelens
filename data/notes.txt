@@ -1,0 +1,9 @@
+AI: Artificial Intelligence (AI) is the simulation of human intelligence by machines.
+
+Machine Learning: Machine Learning is a subset of AI that allows systems to learn from data.
+
+Deep Learning: Deep Learning is a type of machine learning that uses neural networks.
+
+Applications: AI is used in applications such as chatbots, recommendation systems, and autonomous vehicles.
+
+NLP: Natural Language Processing (NLP) allows machines to understand human language.
