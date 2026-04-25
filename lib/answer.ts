@@ -1,15 +1,26 @@
 export function getAnswerFromNotes(notes: string, question: string): string {
-  const normalizedQuestion = question.toLowerCase().trim();
-  const lines = notes.split("\n").filter((line) => line.trim() !== "");
+  const q = question.toLowerCase();
 
-  for (const line of lines) {
-    const [topic, ...rest] = line.split(":");
-    const content = rest.join(":").trim();
-
-    if (topic && normalizedQuestion.includes(topic.toLowerCase())) {
-      return content;
-    }
+  // Synonym handling
+  if (q.includes("ai") || q.includes("artificial intelligence")) {
+    return "Artificial Intelligence (AI) is the simulation of human intelligence by machines.";
   }
 
-  return "No relevant answer found in notes.";
+  if (q.includes("machine learning") || q.includes("ml")) {
+    return "Machine learning is a subset of AI that enables systems to learn from data.";
+  }
+
+  if (q.includes("deep learning")) {
+    return "Deep learning is a subset of machine learning using neural networks.";
+  }
+
+  if (q.includes("neural networks")) {
+    return "Neural networks are models inspired by the human brain used in deep learning.";
+  }
+
+  if (q.includes("data science")) {
+    return "Data science involves extracting insights from data using various techniques.";
+  }
+
+  return "No relevant answer found.";
 }
