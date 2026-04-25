@@ -1,67 +1,109 @@
 # Evaluation Results
 
-## Output Quality
+## Evaluation Goal
 
-The system was evaluated on 5 representative queries.
+The goal of this evaluation was to check whether NoteLens can answer supported course-related questions accurately and complete the full user flow from input to answer.
 
-All 5 supported queries returned correct and relevant answers.
+---
 
-Metric used:
-- Correctness (answer matches expected meaning)
-- Relevance (answer relates to the question)
+## Metrics Used
 
-Result:
-- 5/5 correct answers
-- High relevance for supported queries
+I used simple correctness and relevance metrics because NoteLens is a focused question-answering application.
 
+- Correctness: Does the answer match the expected meaning?
+- Relevance: Is the answer related to the user question?
+- Task success: Does the full UI → API → logic → response flow complete?
+
+---
+
+## Output Quality Evaluation
+
+I tested 5 total cases.
+
+Results:
+- 3 successful cases
+- 2 failure cases
+
+Supported questions returned correct and relevant answers.
+
+Unsupported questions failed because the required information was not available in the notes file.
+
+---
 
 ## End-to-End Task Success
 
-All supported queries successfully completed the full pipeline:
+For supported questions, the full pipeline worked successfully:
 
 User → UI → API → notes.txt → answer logic → response → UI
 
 Result:
-- 100% success for supported queries
+- Supported queries completed successfully
+- Unsupported queries returned "No relevant answer found."
 
+---
 
-## Upstream Component Evaluation (Keyword Matching)
+## Upstream Component Evaluation
 
-The keyword matching logic works well for exact keyword matches.
+The upstream component evaluated was the keyword matching logic.
 
 Strengths:
 - Fast
 - Deterministic
 - Easy to debug
+- Works well for exact or supported synonym matches
 
 Weaknesses:
-- Fails on synonyms
-- Requires exact keyword presence
+- Still limited to known keywords
+- Does not understand full semantic meaning
+- Cannot answer topics not stored in notes.txt
 
+---
 
 ## Failure Analysis
 
 Failure Case 1:
-- Input: "Explain artificial intelligence"
-- Issue: Keyword mismatch (AI vs artificial intelligence)
+- Input: "What is deep learning?"
+- Reason: Deep learning content is not included in the current notes file.
 
 Failure Case 2:
-- Input: "What is blockchain?"
-- Issue: No relevant data in notes.txt
+- Input: "What are neural networks?"
+- Reason: Neural network content is not included in the current notes file.
 
+---
 
 ## Baseline Comparison
 
 Baseline:
-- Return entire notes.txt without filtering
+- Return the full notes file without filtering.
 
-Issues:
+Baseline result:
 - Too much irrelevant information
 - Poor user experience
+- User has to manually find the answer
 
-Improved System:
-- Keyword-based filtering
+Final system:
+- Uses keyword matching to return a targeted answer.
+
+Final system result:
+- More precise answers
+- Faster user experience
+- Easier to understand output
+
+---
+
+## Evidence-Based Improvement
+
+Evaluation showed that the original system failed when users used the phrase "artificial intelligence" instead of "AI."
+
+Improvement made:
+- Added synonym handling for "AI" and "artificial intelligence"
+- Added synonym handling for "ML" and "machine learning"
 
 Result:
-- More precise answers
-- Better user experience
+- The system now correctly answers "Explain artificial intelligence."
+
+---
+
+## Remaining Weakness
+
+The system still does not use semantic retrieval or embeddings, so it cannot understand all paraphrases or answer questions outside the stored notes.
